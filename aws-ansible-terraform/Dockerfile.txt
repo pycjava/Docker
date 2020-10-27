@@ -1,0 +1,9 @@
+FROM alpine
+
+WORKDIR /opt/local/
+RUN build_pkgs="wget curl ansible unzip" \
+    && apk --update add ${build_pkgs} \
+    && curl "https://releases.hashicorp.com/terraform/0.13.5/terraform_0.13.5_linux_amd64.zip" -o "terraform-0.13.5.zip"\
+    && unzip terraform-0.13.5.zip \
+    && mv terraform /usr/local/bin \
+    && rm -rf terraform-0.13.5.zip
